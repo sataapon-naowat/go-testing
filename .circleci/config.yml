@@ -1,5 +1,14 @@
 version: 2.1
 jobs:
+
+  Inipay:
+    docker:
+      - image: asia.gcr.io/ridebeam-devops/inicis-pg-bridge:latest
+    steps:
+      - run:
+          name: Run Docker container
+          command: docker run -p 8125:80 asia.gcr.io/ridebeam-devops/inicis-pg-bridge:latest
+
   # running commands on a basic image
   Hello-World:
     docker:
@@ -54,6 +63,7 @@ jobs:
 workflows:
   Example-Workflow:
     jobs:
+      - Inipay
       - Hello-World
       - Fetch-Code:
           requires:
