@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  inipay:
+    image:  asia.gcr.io/ridebeam-devops/inicis-pg-bridge:latest
+    ports:
+      - 8125:80
+    restart: unless-stopped
