@@ -1,8 +1,16 @@
 version: '3'
 
 services:
-  inipay:
-    image:  asia.gcr.io/ridebeam-devops/inicis-pg-bridge:latest
+  postgres:
+    image: postgis/postgis:10-3.0-alpine
     ports:
-      - 8125:80
-    restart: unless-stopped
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: payment
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
