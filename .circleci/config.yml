@@ -4,13 +4,7 @@ jobs:
     machine:
       image: ubuntu-2004:202010-01
 
-    steps:      
-      - run:
-          name: update system
-          command: |
-            sudo apt update
-            sudo apt upgrade
-      
+    steps:            
       - run:
           name: install docker
           command: |
@@ -25,12 +19,6 @@ jobs:
           command: |
             sudo systemctl start docker
             sudo systemctl enable docker
-      
-      - run:
-          name: verify docker installation
-          command: |
-            docker --version
-
 
 workflows:
   continuous-integration:
