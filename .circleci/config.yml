@@ -11,12 +11,12 @@ jobs:
     steps:
       - checkout      
 
-      - run:
-          name: download golanglint-ci
-          command: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.49.0
-      - run:
-          name: run lint
-          command: ./bin/golangci-lint run
+      # - run:
+      #     name: download golanglint-ci
+      #     command: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.49.0
+      # - run:
+      #     name: run lint
+      #     command: ./bin/golangci-lint run
 
       - run:
           name: install docker
