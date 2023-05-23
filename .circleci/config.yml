@@ -19,6 +19,11 @@ jobs:
           command: |
             sudo systemctl start docker
             sudo systemctl enable docker
+      
+      - run:
+          name: docker compose
+          command: |
+            docker compose up -d
 
 workflows:
   continuous-integration:
