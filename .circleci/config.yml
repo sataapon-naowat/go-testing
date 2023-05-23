@@ -1,11 +1,23 @@
 version: 2.1
+
+orbs:
+  go: circleci/go@1.7
+
 jobs:
   build:
     machine:
       image: ubuntu-2004:202010-01
 
     steps:
-      - checkout            
+      - checkout      
+
+      - run:
+          name: download golanglint-ci
+          command: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.49.0
+      - run:
+          name: run lint
+          command: ./bin/golangci-lint run
+
       - run:
           name: install docker
           command: |
@@ -15,10 +27,22 @@ jobs:
             sudo apt-get update
             sudo apt-get install docker-ce docker-ce-cli containerd.io
       
+      - go/install:
+          version: "1.19"
+      - go/load-cache
+      - go/mod-download
+      - go/save-cache
+
       - run:
           name: docker compose
           command: |
             docker compose up -d
+      
+      - run:
+          name: run go code
+          command: |
+            go run .
+            
 
 workflows:
   continuous-integration:
