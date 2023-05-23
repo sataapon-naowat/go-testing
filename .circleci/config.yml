@@ -16,12 +16,6 @@ jobs:
             sudo apt-get install docker-ce docker-ce-cli containerd.io
       
       - run:
-          name: start and enable docker
-          command: |
-            sudo systemctl start docker
-            sudo systemctl enable docker
-      
-      - run:
           name: docker compose
           command: |
             docker compose up -d
